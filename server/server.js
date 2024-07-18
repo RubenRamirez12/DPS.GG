@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import LOLRoutes from "./routes/LOLRoutes.js"
+import seedAll from "./seeds/index.js"
 
 const app = express();
 dotenv.config();
@@ -25,7 +26,7 @@ const DB_URI = process.env.DB_URI || mongoServer.getUri();
 // }
 
 
-mongoose.connect(DB_URI).then(() => console.log("MongoDB Connected"))
+mongoose.connect(DB_URI).then(() => console.log("MongoDB Connected")).then(() => seedAll())
 
 app.listen(PORT, () => {
     console.log(`Server now listening on port ${PORT}`);

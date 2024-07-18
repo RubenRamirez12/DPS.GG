@@ -3,13 +3,10 @@ import mongoose from "mongoose"
 import LOLUserModel from "../models/LOLUserModel.js"
 
 export const getUser = async (req, res) => {
-    console.log("GOT HIT")
     const { riotId } = req.body
 
     try {
         const LOLuser = await LOLUserModel.findOne({ riotId: riotId})
-
-        console.log(LOLuser)
 
         res.status(200).json(LOLuser)
     } catch (error) {
