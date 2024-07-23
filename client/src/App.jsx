@@ -1,20 +1,21 @@
 import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
+import { Routes, Route } from "react-router-dom";
+import LOLMain from "./components/LeagueOfLegends/LOLMain";
 
-export default function App () {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
     <div className="app__div">
-      <h1>Client Operational!</h1>
-      <Navbar/>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div className="app__navbar">
+        <Navbar />
       </div>
-
+      <div className="app__main">
+        <Routes>
+          <Route path="/lol" element={<LOLMain/>} />
+          <Route path="/osu" element={<h1>We are in osu</h1>} />
+        </Routes>
+      </div>
     </div>
   );
 }

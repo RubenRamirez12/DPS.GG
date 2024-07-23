@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 3rem;
@@ -39,4 +39,25 @@
 
 .read-the-docs {
   color: #888;
+} */
+.app__div{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+}
+
+.app__navbar{
+  height: 10%;
+  border: 1px solid blueviolet;
+  width: 100%;
+}
+
+.app__main{
+  height: 90%;
+  border: 1px solid yellow;
+  width: 100%;
+}
+
+#testing{
+
 }
