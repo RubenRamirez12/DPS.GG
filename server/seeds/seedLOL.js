@@ -16,7 +16,7 @@ export const seedLOLUsers = async () => {
     const user3 = new LOLUserModel({
         username: "Synergy",
         riotId: "34567",
-        rank: "Challenger"
+        rank: "Iron"
     })
 
     await user1.save()
