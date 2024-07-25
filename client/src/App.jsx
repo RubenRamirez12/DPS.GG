@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import LOLMain from "./components/LeagueOfLegends/LOLMain";
+import OsuMain from "./components/Osu/OsuMain";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       <div className="app__main">
         <Routes>
           <Route path="/lol" element={<LOLMain/>} />
-          <Route path="/osu" element={<h1>We are in osu</h1>} />
+          <Route path="/osu" element={<OsuMain/>} />
         </Routes>
       </div>
     </div>
