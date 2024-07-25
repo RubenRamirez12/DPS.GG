@@ -1,4 +1,4 @@
-export default function LOLMain() {
+export default function LOLSidebar() {
     return(
         <div className="lol-sidebar__main">
             <ul>
