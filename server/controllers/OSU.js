@@ -1,43 +1,64 @@
-// import OsuUserModel from "../models/OsuUserModel";
-// import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
-// import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
+import OsuUserModel from "../models/OsuUserModel";
+import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
+import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
+import { OsuClient } from "../clients/OsuClient";
 
-// export const getUser = async (req, res) => {
-//     const {osuID} = req.body
+export const getUser = async (req, res) => {
+    const {osuID, osuGameMode} = req.body
 
-//     try {
-//         const OsuUser = await OsuUserModel.findOne({userID: osuID})
+    try {
+       let user = await OsuClient.getUser(osuID, osuGameMode)
 
-//         if (OsuUser) {
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
 
-//             res.status(200).json(OsuUser)
-//         }
+export const getBeatmap = async (req, res) => {
+    const {beatmapID} = req.body
 
-//     } catch (error) {
-//         res.status(404).json({ message: error.message })
-//     }
-// }
+    try {
+        const beatmap = await OsuClient.getBeatmap(beatmapID)
 
-// export const getBeatmap = async (req, res) => {
-//     const {beatmapID} = req.body
+        res.status(200).json(beatmap)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
 
-//     try {
-//         const beatmap = await OsuBeatmapStatsModel.findOne({beatmapID: beatmapID})
+export const getBeatmapSet = async (req, res) => {
+    const {beatmapSetID} = req.body
 
-//         res.status(200).json(beatmap)
-//     } catch (error) {
-//         res.status(404).json({ message: error.message })
-//     }
-// }
+    try {
+        const beatmapSet = await OsuClient.getBeatmapSet(beatmapSetID)
 
-// export const getBeatmapScore = async (req, res) => {
-//     const {scoreID} = req.body
+        res.status(200).json(beatmapSet)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
 
-//     try {
-//         const userScore = await OsuBeatmapUserPerformanceModel.findOne({scoreID: scoreID})
+export const getBeatmapScore = async (req, res) => {
+    const {beatmapID, osuID} = req.body
 
-//         res.status(200).json(userScore)
-//     } catch (error) {
-//         res.status(404).json({ message: error.message})
-//     }
-// }
+    try {
+        const userScore = await OsuClient.getBeatmapScore(beatmapID, osuID)
+
+        res.status(200).json(userScore)
+    } catch (error) {
+        res.status(404).json({ message: error.message})
+    }
+}
+
+export const getUserBest = async (req, res) => {
+    const {osuID, osuGameMode} = req.body
+
+    try {
+        const userBestScores = await OsuClient.getUserBest(osuID, osuGameMode)
+
+        res.status(200).json(userBestScores)
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}
