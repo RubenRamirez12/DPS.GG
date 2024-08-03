@@ -3,7 +3,7 @@ import { getUser, getBeatmap, getBeatmapSet, getBeatmapScore, getUserBest } from
 
 const router = express.Router()
 
-router.get("/getUser", getUser)
+router.post("/getUser", getUser)
 router.get("/getBeatmap", getBeatmap)
 router.get("/getBeatmapSet", getBeatmapSet)
 router.get("/getScore", getBeatmapScore)

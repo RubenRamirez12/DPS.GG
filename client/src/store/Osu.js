@@ -31,13 +31,16 @@ const actionGetUserBest = (userBest) => ({
 })
 
 export const thunkGetUser = (osuID, osuGameMode) => async (dispatch) => {
+    console.log("running thunk")
     const response = await fetch("/api/Osu/getUser", {
+        method: "POST",
         body: {osuID, osuGameMode}
     });
 
     if (response.ok) {
         const user = await response.json()
         dispatch(actionGetUser(user))
+        console.log(user)
     } else {
         const error = await response.json()
         return error
