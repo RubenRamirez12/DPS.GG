@@ -87,7 +87,7 @@ export const thunkGetBeatmapScore = (beatmapID, osuID) => async (dispatch) => {
         for (let score in beatmapScores) {
             normalized[score.score_id] = score
         }
-        dispatch(actionGetBeatmapScore(normalized))
+        dispatch(actionGetBeatmapScores(normalized))
     } else {
         const error = await response.json()
         return error

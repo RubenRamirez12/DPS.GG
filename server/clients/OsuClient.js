@@ -4,11 +4,11 @@ import dotenv  from "dotenv"
 dotenv.config()
 
 export class OsuClient {
-    constructor() {
-        apiKey = process.env.OSU_API_KEY
-    }
 
-    getUser = async (user, gameMode = 0) => {
+    static apiKey = process.env.OSU_API_KEY
+
+
+    static getUser = async (user, gameMode = 0) => {
 
         if (gameMode === "osu!") {
           gameMode = 0
@@ -35,7 +35,7 @@ export class OsuClient {
         return data
       }
 
-      getUserBest = async (user, gameMode = 0) => {
+      static getUserBest = async (user, gameMode = 0) => {
 
         if (gameMode === "osu!") {
             gameMode = 0
@@ -63,7 +63,7 @@ export class OsuClient {
       return data
     }
 
-    getBeatmapSet = async (setID) => {
+   static getBeatmapSet = async (setID) => {
         const url = new URL("https://osu.ppy.sh/api/get_beatmaps")
         const params = {
             "k": apiKey,
@@ -78,7 +78,7 @@ export class OsuClient {
         return data
     }
 
-    getBeatmap = async (beatmapID) => {
+   static getBeatmap = async (beatmapID) => {
         const url = new URL("https://osu.ppy.sh/api/get_beatmaps")
         const params = {
             "k": apiKey,
@@ -93,7 +93,7 @@ export class OsuClient {
         return data
     }
 
-    getBeatmapScore = async (beatmapID, user) => {
+    static getBeatmapScore = async (beatmapID, user) => {
         const url = new URL("https://osu.ppy.sh/api/get_scores")
         const params = {
             "k": apiKey,

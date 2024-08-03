@@ -1,7 +1,7 @@
-import OsuUserModel from "../models/OsuUserModel";
-import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
-import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
-import { OsuClient } from "../clients/OsuClient";
+// import OsuUserModel from "../models/OsuUserModel";
+// import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
+// import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
+import { OsuClient } from "../clients/OsuClient.js";
 
 export const getUser = async (req, res) => {
     const {osuID, osuGameMode} = req.body
