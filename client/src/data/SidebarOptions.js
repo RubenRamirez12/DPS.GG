@@ -1,4 +1,4 @@
-export const lolSidebar = [
+export const lolSidebarData = [
     {
         path: "/lol",
         name: "Home",
@@ -8,5 +8,13 @@ export const lolSidebar = [
         path: "/tier-list",
         name: "Tier List",
         icon: "three little lines stacked/paper"
+    }
+]
+
+export const osuSidebarData = [
+    {
+        path: "/osu",
+        name: "Home",
+        icon: "House Icon"
     }
 ]
