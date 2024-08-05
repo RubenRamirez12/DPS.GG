@@ -4,6 +4,7 @@
 import { OsuClient } from "../clients/OsuClient.js";
 
 export const getUser = async (req, res) => {
+    console.log("HIT OSU GET USER")
     const {osuID, osuGameMode} = req.body
 
     try {

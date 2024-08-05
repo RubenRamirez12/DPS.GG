@@ -2,19 +2,17 @@ import { useState } from "react";
 import "./LOLSearch.css";
 
 export default function LOLSearch() {
+  const [searchVal, setSearchVal] = useState("");
 
-    const [searchVal, setSearchVal] = useState("")
-
-    const handleKey = (e) => {
-        if(e.key === "Enter"){
-            handleSearch(e)
-        }
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      handleSearch(e);
     }
+  };
 
-    const handleSearch = (e) => {
-        e.preventDefault()
-        
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="lol-search__div">
       <div className="lol-search__description">
@@ -25,16 +23,16 @@ export default function LOLSearch() {
         </div>
       </div>
       <form onSubmit={handleSearch}>
-      <input
-        className="lol-search__input"
-        type="text"
-        value={searchVal}
-        onKeyDown={handleKey}
-        onChange= {(e) => setSearchVal(e.target.val)}
-        placeholder="Search Yourself"
-        required
-      />
-      <button type="submit">submit</button>
+        <input
+          className="lol-search__input"
+          type="text"
+          value={searchVal}
+          onKeyDown={handleKey}
+          onChange={(e) => setSearchVal(e.target.val)}
+          placeholder="Search Yourself"
+          required
+        />
+        <button type="submit">submit</button>
       </form>
     </div>
   );

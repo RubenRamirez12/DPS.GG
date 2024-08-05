@@ -1,6 +1,6 @@
 import LOLSidebar from "./LOLSidebar";
-import LOLSearch from "./LOLSearch";
-import "./LOLMain.css"
+import { Outlet } from "react-router-dom";
+import "./LOLMain.css";
 
 export default function LOLMain() {
   return (
@@ -9,7 +9,7 @@ export default function LOLMain() {
         <LOLSidebar />
       </div>
       <div className="lol-main__content">
-        <LOLSearch/>
+        <Outlet />
       </div>
     </div>
   );

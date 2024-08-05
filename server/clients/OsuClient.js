@@ -9,6 +9,7 @@ export class OsuClient {
 
 
     static getUser = async (user, gameMode = 0) => {
+        // console.log("IN CLIENT OSU, API KEY", this.apiKey)
 
         if (gameMode === "osu!") {
           gameMode = 0
@@ -31,6 +32,8 @@ export class OsuClient {
         const response = await fetch(url, {method: "GET",})
 
         let data = await response.json()
+
+        console.log(data)
 
         return data
       }

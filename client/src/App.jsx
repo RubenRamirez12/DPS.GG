@@ -1,8 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import { Routes, Route } from "react-router-dom";
-import LOLMain from "./components/LeagueOfLegends/LOLMain";
-import OsuMain from "./components/Osu/OsuMain";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
@@ -11,10 +9,7 @@ export default function App() {
         <Navbar />
       </div>
       <div className="app__main">
-        <Routes>
-          <Route path="/lol" element={<LOLMain/>} />
-          <Route path="/osu" element={<OsuMain/>} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   );
