@@ -8,7 +8,7 @@
 .content-display__sidebar{
     display: flex;
     flex-direction: column;
-    width: 10%;
+    position: relative;
     height: 100%;
 }
 
@@ -17,5 +17,5 @@
     flex-direction: column;
     flex-grow: 1;
     height: 100%;
-    border: red solid 1px;
+    margin-left: 50px;
 }

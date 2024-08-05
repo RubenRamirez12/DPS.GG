@@ -1,34 +1,34 @@
-.lol-search__div{
-    display: flex;
-    flex-direction: column;
-    border: yellow solid 1px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+.lol-search__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/LOLBackground.png");
+  background-size: contain;
 }
 
-.lol-search__input{
-    border-radius: 4px;
-    background-color: white;
-    height: 40px;
-    width: 450px;
-    border: none;
-    color: black;
+.lol-search__input {
+  border-radius: 4px;
+  background-color: white;
+  height: 40px;
+  width: 450px;
+  border: none;
+  color: black;
 }
 
-.lol-search__description{
-    display: flex;
-    flex-direction: row;
-    font-size: 20px;
-    border: aquamarine solid 1px;
-    justify-content: center;
-    align-items: center;
+.lol-search__description {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.lol-search__description-info{
-    gap: -5px;
-    display: flex;
-    flex-direction: column;
-    font-size: 10px;
+.lol-search__description-info {
+  gap: -5px;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
 }

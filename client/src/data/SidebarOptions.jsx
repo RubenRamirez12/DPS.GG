@@ -10,7 +10,7 @@ export const lolSidebarData = [
     path: "/tier-list",
     name: "Tier List",
     icon: <FaHome />,
-  },
+  }
 ];
 
 export const osuSidebarData = [
