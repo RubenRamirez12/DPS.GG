@@ -1,7 +1,15 @@
 import OsuSidebar from "./OsuSidebar";
 import "./OsuMain.css"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import OsuSearch from "./OsuSearch";
 
 export default function OsuMain() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+    })
 
     return (
         <div className="osu-main__main">
@@ -9,7 +17,7 @@ export default function OsuMain() {
                 <OsuSidebar/>
             </div>
             <div className="osu-main__content">
-                <button >Obtain Osu Stats</button>
+                <OsuSearch/>
             </div>
         </div>
     )

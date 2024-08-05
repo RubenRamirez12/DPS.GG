@@ -1,4 +1,5 @@
 import LOLSidebar from "./LOLSidebar";
+import LOLSearch from "./LOLSearch";
 import "./LOLMain.css"
 
 export default function LOLMain() {
@@ -8,7 +9,7 @@ export default function LOLMain() {
         <LOLSidebar />
       </div>
       <div className="lol-main__content">
-        <input type="text" placeholder="enter username" />
+        <LOLSearch/>
       </div>
     </div>
   );
