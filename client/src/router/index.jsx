@@ -1,8 +1,6 @@
 import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
-import {
-  lolSidebarData,
-  osuSidebarData,
-} from "../data/SidebarOptions"
+import { navbarData } from "../data/NavbarOptions";
+import { lolSidebarData, osuSidebarData } from "../data/SidebarOptions";
 import App from "../App";
 import ContentDisplay from "../components/ContentDisplay/ContentDisplay";
 import LOLSearch from "../components/LeagueOfLegends/LOLSearch";
@@ -11,7 +9,7 @@ import OsuSearch from "../components/Osu/OsuSearch";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App navbarData={navbarData} />,
     children: [
       {
         path: "lol",

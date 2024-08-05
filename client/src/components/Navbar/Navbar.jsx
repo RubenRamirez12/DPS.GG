@@ -1,21 +1,17 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import LeagueOfLegendsIcon from "../../assets/LeagueOfLegendsIcon.png";
-import OsuIcon from "../../assets/OsuIcon.png";
 
-export default function Navbar() {
+export default function Navbar({ navbarData }) {
   return (
     <div className="navbar__main">
-      <NavLink className="navbar__link" to="/lol">
-        <img className="navbar__icon" src={LeagueOfLegendsIcon} alt="" />
-        <div className="navbar__text">Leaugue of Legends</div>
-      </NavLink>
-      <NavLink className="navbar__link" to="/osu">
-        <img className="navbar__icon" src={OsuIcon} alt="" />
-        <div className="navbar__text">Osu!</div>
-      </NavLink>
+      {navbarData.map((item, index) => {
+        return (
+          <NavLink className="navbar__link" to={item.path} key={index}>
+            <img className="navbar__icon" src={item.icon} alt="" />
+            <div className="navbar__text">{item.name}</div>
+          </NavLink>
+        );
+      })}
     </div>
   );
 }
-
-// auth button -> obtaining private user details
