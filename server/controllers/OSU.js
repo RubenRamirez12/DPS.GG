@@ -1,14 +1,16 @@
-import OsuUserModel from "../models/OsuUserModel";
-import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
-import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
+// import OsuUserModel from "../models/OsuUserModel";
+// import OsuBeatmapUserPerformanceModel from "../models/OsuBeatmapUserPerformanceModel";
+// import OsuBeatmapStatsModel from "../models/OsuBeatmapStatsModel";
+import { OsuClient } from "../clients/OsuClient.js";
 
 export const getUser = async (req, res) => {
-    const {osuID} = req.body
+    console.log("HIT OSU GET USER")
+    const {osuID, osuGameMode} = req.body
 
     try {
-        const OsuUser = await OsuUserModel.findOne({userID: osuID})
+       let user = await OsuClient.getUser(osuID, osuGameMode)
 
-        res.status(200).json(OsuUser)
+        res.status(200).json(user)
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
@@ -18,7 +20,7 @@ export const getBeatmap = async (req, res) => {
     const {beatmapID} = req.body
 
     try {
-        const beatmap = await OsuBeatmapStatsModel.findOne({beatmapID: beatmapID})
+        const beatmap = await OsuClient.getBeatmap(beatmapID)
 
         res.status(200).json(beatmap)
     } catch (error) {
@@ -26,14 +28,38 @@ export const getBeatmap = async (req, res) => {
     }
 }
 
-export const getBeatmapScore = async (req, res) => {
-    const {scoreID} = req.body
+export const getBeatmapSet = async (req, res) => {
+    const {beatmapSetID} = req.body
 
     try {
-        const userScore = await OsuBeatmapUserPerformanceModel.findOne({scoreID: scoreID})
+        const beatmapSet = await OsuClient.getBeatmapSet(beatmapSetID)
+
+        res.status(200).json(beatmapSet)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+export const getBeatmapScore = async (req, res) => {
+    const {beatmapID, osuID} = req.body
+
+    try {
+        const userScore = await OsuClient.getBeatmapScore(beatmapID, osuID)
 
         res.status(200).json(userScore)
     } catch (error) {
         res.status(404).json({ message: error.message})
+    }
+}
+
+export const getUserBest = async (req, res) => {
+    const {osuID, osuGameMode} = req.body
+
+    try {
+        const userBestScores = await OsuClient.getUserBest(osuID, osuGameMode)
+
+        res.status(200).json(userBestScores)
+    } catch (error) {
+        res.status(404).json({message: error.message})
     }
 }

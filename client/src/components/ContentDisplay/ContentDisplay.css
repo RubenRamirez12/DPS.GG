@@ -1,20 +1,21 @@
-.lol-main__main{
+.content-display__div{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
 }
 
-.lol-main__sidebar{
+.content-display__sidebar{
     display: flex;
     flex-direction: column;
-    width: 20%;
+    position: relative;
     height: 100%;
 }
 
-.lol-main__content{
+.content-display__main{
     display: flex;
-    flex-direction: row;
-    width: 80%;
+    flex-direction: column;
+    flex-grow: 1;
     height: 100%;
+    margin-left: 50px;
 }

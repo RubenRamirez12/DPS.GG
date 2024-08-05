@@ -1,20 +1,15 @@
-import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import { Routes, Route } from "react-router-dom";
-import LOLMain from "./components/LeagueOfLegends/LOLMain";
+import { Outlet } from "react-router-dom";
 
-export default function App() {
+export default function App({ navbarData }) {
   return (
     <div className="app__div">
       <div className="app__navbar">
-        <Navbar />
+        <Navbar navbarData={navbarData} />
       </div>
       <div className="app__main">
-        <Routes>
-          <Route path="/lol" element={<LOLMain/>} />
-          <Route path="/osu" element={<h1>We are in osu</h1>} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   );
