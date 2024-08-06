@@ -4,7 +4,7 @@ export const getUser = async (req, res) => {
     const riotID = req.params.riotID
 
     try {
-        let user = LOLClient.getUser(riotID)
+        let user = await LOLClient.getUser(riotID)
 
         res.status(200).json(user)
     } catch (error) {
