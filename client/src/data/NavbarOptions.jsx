@@ -11,5 +11,5 @@ export const navbarData = [
         path: "/osu",
         name: "Osu!",
         icon: OsuIcon
-    }
+    },
 ]

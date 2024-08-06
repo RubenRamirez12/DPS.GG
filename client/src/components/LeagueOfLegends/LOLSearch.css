@@ -6,7 +6,9 @@
   width: 100%;
   height: 100%;
   background-image: url("../../assets/LOLBackground.png");
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .lol-search__input {
@@ -16,6 +18,8 @@
   width: 450px;
   border: none;
   color: black;
+  outline: none;
+  padding-left: 15px;
 }
 
 .lol-search__description {
@@ -24,11 +28,36 @@
   font-size: 20px;
   justify-content: center;
   align-items: center;
+  margin: 0px;
+  padding: 0px;
+  gap: 10px;
 }
 
 .lol-search__description-info {
-  gap: -5px;
   display: flex;
   flex-direction: column;
   font-size: 10px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.lol-search__form {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 12.5px
+}
+
+.lol-search__search-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  right: 25px;
+  color: gray;
 }
