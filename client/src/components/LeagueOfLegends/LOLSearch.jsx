@@ -1,17 +1,21 @@
 import { useState } from "react";
 import "./LOLSearch.css";
+import { thunkGetUser } from "../../store/LeagueOfLegends";
+import { useDispatch } from "react-redux";
 
 export default function LOLSearch() {
   const [searchVal, setSearchVal] = useState("");
+  const dispatch = useDispatch()
 
   const handleKey = (e) => {
     if (e.key === "Enter") {
       handleSearch(e);
     }
   };
-
+  
   const handleSearch = (e) => {
     e.preventDefault();
+    dispatch(thunkGetUser(searchVal))
   };
   return (
     <div className="lol-search__div">
@@ -28,7 +32,7 @@ export default function LOLSearch() {
           type="text"
           value={searchVal}
           onKeyDown={handleKey}
-          onChange={(e) => setSearchVal(e.target.val)}
+          onChange={(e) => setSearchVal(e.target.value)}
           placeholder="Search Yourself"
           required
         />

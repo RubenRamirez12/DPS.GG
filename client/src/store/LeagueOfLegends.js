@@ -8,8 +8,9 @@ const getUser = (user) => ({
 })
 
 //thunk
-export const thunkGetUser = (riotId) => async (dispatch) => {
-    const response = await fetch(`/api/lol/getUser/${riotId}`)
+export const thunkGetUser = (riotID) => async (dispatch) => {
+    riotID = encodeURIComponent(riotID)
+    const response = await fetch(`/api/lol/getUser/${riotID}`)
     
     if (response.ok){
         const user = await response.json()
