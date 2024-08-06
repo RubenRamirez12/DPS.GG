@@ -12,6 +12,10 @@ export const router = createBrowserRouter([
     element: <App navbarData={navbarData} />,
     children: [
       {
+        index: true,
+        element: <Navigate to="/lol" />,
+      },
+      {
         path: "lol",
         element: (
           <ContentDisplay sidebarData={lolSidebarData}>
@@ -29,7 +33,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-
       {
         path: "osu",
         element: (

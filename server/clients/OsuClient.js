@@ -3,13 +3,12 @@ import dotenv  from "dotenv"
 
 dotenv.config()
 
-export class OsuClient {
+class OsuClient {
 
     static apiKey = process.env.OSU_API_KEY
 
 
     static getUser = async (user, gameMode = 0) => {
-        // console.log("IN CLIENT OSU, API KEY", this.apiKey)
 
         if (gameMode === "osu!") {
           gameMode = 0
@@ -113,3 +112,5 @@ export class OsuClient {
         return data
     }
 }
+
+export default OsuClient;
