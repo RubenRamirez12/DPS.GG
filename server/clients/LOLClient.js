@@ -26,7 +26,7 @@ class LOLClient {
         res.profileIconId = summ.profileIconId;
         res.summonerLevel = summ.summonerLevel;
         res.puuid = data.puuid;
-        let matches = await this.getMatches(data.puuid)
+        let matches = await this.getMatches(data.puuid);
         res.matches = matches;
 
         return res;
@@ -46,7 +46,6 @@ class LOLClient {
 
       let data = await res.json();
 
-      console.log("summV4, exsits we have icon and level");
       return data;
     } catch (e) {
       console.error(e);
@@ -61,12 +60,84 @@ class LOLClient {
 
       let data = await res.json();
 
-      console.log("matchID, 10 matchId's", data);
-      return data
+      let matches = [];
+      for (let i = 0; i < data.length; i++) {
+        let match = await this.getMatchDetails(data[i]);
+
+        matches.push(match);
+      }
+
+      return matches;
     } catch (e) {
       console.error(e);
     }
   };
+
+  static getMatchDetails = async (matchID) => {
+    try {
+      let res = await fetch(
+        `${this.baseUrl}/lol/match/v5/matches/${matchID}?api_key=${this.apiKey}`
+      );
+
+      let data = await res.json();
+
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  static formatMatch = (match) => {
+    let formatted = {
+      matchDetails: {
+        gameLength: match.info.gameDuration,
+        gameMode: match.info.gameMode,
+        matchID: match.metadata.matchId,
+      },
+      players: {
+        [
+            {
+                champLevel,
+                champID,
+                item0 : getItemUrl(item0.id),
+                item1 : getItemUrl(item0.id),
+                item2 : getItemUrl(item0.id),
+                item3 : getItemUrl(item0.id),
+                item4 : getItemUrl(item0.id),
+                item5 : getItemUrl(item0.id),
+                item6 : getItemUrl(item0.id),
+                riotIdGamename,
+                riotIdTagline,
+                deaths,
+                kills,
+                assists,
+                visionscore,
+                championName,
+                summoner1Id getSummonerUrl(summoner1Id.id),
+                summoner2Id,
+                totalMinionsKilled,
+                role,
+                teamId,
+                win,
+
+            }
+        ]
+      },
+    };
+
+    formatted.matchDetails;
+  };
+
+  static  participantsInfo = (match) => {
+
+    
+  }
+
+
+
+
+
+
 }
 
 export default LOLClient;
