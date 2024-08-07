@@ -5,6 +5,7 @@ import App from "../App";
 import ContentDisplay from "../components/ContentDisplay/ContentDisplay";
 import LOLSearch from "../components/LeagueOfLegends/LOLSearch";
 import OsuSearch from "../components/Osu/OsuSearch";
+import LOLUserProfile from "../components/LeagueOfLegends/LOLUserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "user/:riotID",
-            element: <h1>USER XXX</h1>,
+            element: <LOLUserProfile />,
           },
         ],
       },

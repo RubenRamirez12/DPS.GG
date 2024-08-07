@@ -19,9 +19,9 @@ export default function LOLSearch() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    let res = await dispatch(thunkGetUser(searchVal));
+    let redirect = await dispatch(thunkGetUser(searchVal));
 
-    if (res.ok) {
+    if (redirect) {
       navigate(`/lol/user/${searchVal}`)
     }
   };

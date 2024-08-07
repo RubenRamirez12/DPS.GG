@@ -23,7 +23,7 @@ class LOLClient {
       let data = await res.json();
       if (data.puuid) {
         let player = {
-          summonerInfo: await this.getSumm(data.puuid),
+          summonerInfo: await this.getSumm(data.puuid,gameName,tagLine),
           matches: await this.getMatches(data.puuid),
         };
 
@@ -36,7 +36,7 @@ class LOLClient {
     }
   };
 
-  static getSumm = async (puuid) => {
+  static getSumm = async (puuid,name,tag) => {
     try {
       let res = await fetch(
         `https://${this.baseRegion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${this.apiKey}`
@@ -44,7 +44,13 @@ class LOLClient {
 
       let data = await res.json();
 
-      return data;
+      return {
+        puuid : data.puuid,
+        summonerLevel : data.summonerLevel,
+        profileIconUrl : await this.getSummonerImageById(data.profileIconId),
+        gameName : name,
+        tagLine : tag
+      };
     } catch (e) {
       console.error(e);
     }
@@ -200,6 +206,12 @@ class LOLClient {
     let version = await this.getVersion();
     return `${this.dataDragonUrl}/cdn/${version}/img/spell/${spellName}.png`;
   };
+
+  static getSummonerImageById = async (iconId) => {
+    let version = await this.getVersion();
+    return `${this.dataDragonUrl}/cdn/${version}/img/profileicon/${iconId}.png`;
+  }
+
 }
 
 export default LOLClient;
