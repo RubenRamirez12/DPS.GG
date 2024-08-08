@@ -32,3 +32,13 @@ export const osuSidebarData = [
     icon: <FaHome />,
   },
 ];
+
+export const tftSidebarData = [
+{
+  path: "/tft",
+  name: "Home",
+  icon: <FaHome />,
+
+}
+
+]

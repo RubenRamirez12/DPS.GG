@@ -1,10 +1,11 @@
 import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import { navbarData } from "../data/NavbarOptions";
-import { lolSidebarData, osuSidebarData } from "../data/SidebarOptions";
+import { lolSidebarData, osuSidebarData, tftSidebarData } from "../data/SidebarOptions";
 import App from "../App";
 import ContentDisplay from "../components/ContentDisplay/ContentDisplay";
 import LOLSearch from "../components/LeagueOfLegends/LOLSearch";
 import OsuSearch from "../components/Osu/OsuSearch";
+import TFTSearch from "../components/TeamFightTactics/TFTSearch";
 import LOLUserProfile from "../components/LeagueOfLegends/LOLUserProfile";
 
 export const router = createBrowserRouter([
@@ -48,6 +49,20 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "tft",
+        element: (
+          <ContentDisplay sidebarData={tftSidebarData}>
+            <Outlet />
+          </ContentDisplay>
+        ),
+        children: [
+          {
+            index: true,
+            element: <TFTSearch />
+          }
+        ]
+      }
     ],
   },
   {
