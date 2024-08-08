@@ -1,57 +1,25 @@
-import { useDispatch } from "react-redux"
-import { thunkGetUser as LOLThunkGetUser } from "../store/LeagueOfLegends"
-
-
+import { thunkGetUser as LOLThunkGetUser } from "../store/LeagueOfLegends";
+import { thunkGetUser as TFTThunkGetUser } from "../store/TeamFightTactics";
+import LOLSearchImage from "../assets/LOLBackground.png";
+import TFTSearchImage from "../assets/TFTBackground.png";
 
 export const lolSearchBarData = {
-
-
-    handleSearch: async function(e, riotID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(riotID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-
-
-
-    placeHolder: "Search Yourself"
-}
+  searchThunk: LOLThunkGetUser,
+  redirectURL: "/lol/user",
+  image: LOLSearchImage,
+  placeHolder: "Search Yourself",
+};
 
 export const osuSearchBarData = {
-
-
-    handleSearch: async function(e, osuID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(osuID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-
-
-    placeHolder: "This is osu Search"
-}
-
+  searchThunk: LOLThunkGetUser,
+  redirectURL: "/osu/user",
+  image: LOLSearchImage,
+  placeHolder: "This is osu Search",
+};
 
 export const tftSearchBarData = {
-    handleSearch: async function(e, riotID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(riotID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-    placeHolder: "This is not osu Search"
-}
+  searchThunk: TFTThunkGetUser,
+  redirectURL: "/tft/user",
+  image: TFTSearchImage,
+  placeHolder: "This is not osu Search",
+};
