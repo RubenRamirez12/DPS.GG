@@ -1,5 +1,5 @@
 import express from "express"
-import { getUser, getBeatmap, getBeatmapSet, getBeatmapScore, getUserBest } from "../controllers/OSU.js"
+import { getUser, getBeatmap, getBeatmapSet, getBeatmapScore, getUserBest } from "../controllers/OSUController.js"
 
 const router = express.Router()
 

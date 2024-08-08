@@ -1,0 +1,63 @@
+.search-bar__div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/LOLBackground.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .search-bar__input {
+    border-radius: 4px;
+    background-color: white;
+    height: 40px;
+    width: 450px;
+    border: none;
+    color: black;
+    outline: none;
+    padding-left: 15px;
+  }
+
+  .search-bar__description {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    gap: 10px;
+  }
+
+  .search-bar__description-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .search-bar__form {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 12.5px
+  }
+
+  .search-bar__search-button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    right: 25px;
+    color: gray;
+  }
