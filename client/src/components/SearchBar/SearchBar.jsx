@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import "./SearchBar.css"
+import "./SearchBar.css";
 
 export const SearchBar = ({ searchBarData }) => {
   const [searchVal, setSearchVal] = useState("");
@@ -12,14 +12,18 @@ export const SearchBar = ({ searchBarData }) => {
   };
 
   return (
-    <div className="search-bar__div">
+    <div
+      className="search-bar__div"
+      style={{ backgroundImage: searchBarData.Image }}
+    >
       <div className="search-bar__description">
         <h1>DPS.GG</h1>
       </div>
 
       <form
         onSubmit={(e) => searchBarData.handleSearch(e, searchVal)}
-        className="search-bar__form">
+        className="search-bar__form"
+      >
         <input
           className="search-bar__input"
           type="text"
