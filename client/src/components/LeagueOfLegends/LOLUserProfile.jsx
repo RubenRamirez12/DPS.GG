@@ -18,10 +18,20 @@ export default function LOLUserProfile() {
         <div className="lol-user-profile__top">
           <div className="lol-user-profile__display-profile">
             <div className="lol-user-profile__top__top">
-              <div className="lol-user-profile__user-icon"> icon</div>
-              <div className="lol-user-profile__username-tagline"> <h1>{user.summonerInfo.gameName} #{user.summonerInfo.tagLine}</h1></div>
+              <div className="lol-user-profile__user-level-icon">
+                <div className="lol-user-profile__user-level">{user.summonerInfo.summonerLevel}</div>
+                <div className="lol-user-profile__user-icon">
+                    <img className="lol-user-profile__icon-settings" src={user.summonerInfo.profileIconUrl}/>
+                </div>
+              </div>
+              <div className="lol-user-profile__username-tagline">
+                {" "}
+                <h1>
+                  {user.summonerInfo.gameName} #{user.summonerInfo.tagLine}
+                </h1>
+              </div>
             </div>
-            <div className="lol-user-profile__top__bottom">Overview</div>
+            <div className="lol-user-profile__top__overview">Overview</div>
           </div>
         </div>
         <div className="lol-user-profile__overview">
