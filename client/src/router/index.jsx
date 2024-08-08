@@ -51,6 +51,20 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "tft",
+        element: (
+          <ContentDisplay sidebarData={tftSidebarData}>
+            <Outlet />
+          </ContentDisplay>
+        ),
+        children : [
+          {
+            index: true,
+            element: <SearchBar searchBarData={tftSearchBarData} />
+          },
+        ]
+      }
     ],
   },
   {

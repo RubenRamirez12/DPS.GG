@@ -53,5 +53,5 @@ export const tftSearchBarData = {
             navigate("/lol/user/riotID")
         }
     },
-    placeHolder: "This is osu Search"
+    placeHolder: "This is not osu Search"
 }
