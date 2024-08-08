@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
 
-export const SearchBar = ({ searchBarData }) => {
+export default function SearchBar({ searchBarData }) {
   const [searchVal, setSearchVal] = useState("");
 
   const handleKey = (e) => {
@@ -39,4 +39,4 @@ export const SearchBar = ({ searchBarData }) => {
       </form>
     </div>
   );
-};
+}
