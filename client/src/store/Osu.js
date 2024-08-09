@@ -29,17 +29,21 @@ const actionGetUserBest = (userBest) => ({
   payload: userBest,
 });
 
-export const thunkGetUser = (osuID, osuGameMode) => async (dispatch) => {
-  console.log("running thunk");
-  const response = await fetch("/api/Osu/getUser", {
-    method: "POST",
-    body: JSON.stringify({ osuID, osuGameMode }),
-  });
+export const thunkSearchUser = (osuUsername) => async (dispatch) => {
+  const response = await fetch(`api/osu/searchUser/${osuUsername}`)
+  if (response.ok) {
+    return true
+  } else {
+    return false
+  }
+}
+
+export const thunkGetUser = (osuUsername, osuGameMode) => async (dispatch) => {
+  const response = await fetch(`/api/osu/getUser/${osuUsername}/${osuGameMode}`);
 
   if (response.ok) {
     const user = await response.json();
     dispatch(actionGetUser(user));
-    console.log(user);
   } else {
     const error = await response.json();
     console.error("API OSU GET USER ERROR", error);
@@ -48,9 +52,7 @@ export const thunkGetUser = (osuID, osuGameMode) => async (dispatch) => {
 };
 
 export const thunkGetBeatmap = (beatmapID) => async (dispatch) => {
-  const response = await fetch("/api/Osu/getBeatmap", {
-    body: { beatmapID },
-  });
+  const response = await fetch(`/api/osu/getBeatmap/${beatmapID}`);
 
   if (response.ok) {
     const beatmap = await response.json();
@@ -62,9 +64,7 @@ export const thunkGetBeatmap = (beatmapID) => async (dispatch) => {
 };
 
 export const thunkGetBeatmapSet = (beatmapSetID) => async (dispatch) => {
-  const response = await fetch("/api/Osu/getBeatmapSet", {
-    body: { beatmapSetID },
-  });
+  const response = await fetch(`/api/osu/getBeatmapSet/${beatmapSetID}`);
 
   if (response.ok) {
     const beatmapSet = await response.json();
@@ -79,10 +79,8 @@ export const thunkGetBeatmapSet = (beatmapSetID) => async (dispatch) => {
   }
 };
 
-export const thunkGetBeatmapScore = (beatmapID, osuID) => async (dispatch) => {
-  const response = await fetch("api/Osu/getBeatmapScore", {
-    body: { beatmapID, osuID },
-  });
+export const thunkGetBeatmapScore = (beatmapID, osuUsername) => async (dispatch) => {
+  const response = await fetch(`api/osu/getScore/${beatmapID}/${osuUsername}`);
 
   if (response.ok) {
     const beatmapScores = await response.json();
@@ -97,10 +95,8 @@ export const thunkGetBeatmapScore = (beatmapID, osuID) => async (dispatch) => {
   }
 };
 
-export const thunkGetUserBest = (osuID, osuGameMode) => async (dispatch) => {
-  const response = await fetch("api/Osu/getUserBest", {
-    body: { osuID, osuGameMode },
-  });
+export const thunkGetUserBest = (osuUsername, osuGameMode) => async (dispatch) => {
+  const response = await fetch(`api/osu/getUserBest/${osuUsername}/${osuGameMode}`);
 
   if (response.ok) {
     const userBest = await response.json();
@@ -115,18 +111,14 @@ export const thunkGetUserBest = (osuID, osuGameMode) => async (dispatch) => {
   }
 };
 
-const initialState = { users: {}, beatmaps: {}, scores: {} };
+const initialState = { currentUser: null, beatmaps: {}, scores: {} };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
       return {
-        ...state,
-        users: {
-          ...state.users,
-          [action.payload.user_id]: action.payload,
-        },
-      };
+        ...state, currentUser: action.payload
+      }
     case GET_BEATMAP:
       return {
         ...state,

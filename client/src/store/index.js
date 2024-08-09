@@ -3,8 +3,9 @@ import { configureStore } from "@reduxjs/toolkit"
 import { thunk } from "redux-thunk"
 import LeagueOfLegends from "./LeagueOfLegends";
 import TeamFightTactics from "./TeamFightTactics";
+import Osu from "./Osu"
 
-const rootReducer = combineReducers({ LeagueOfLegends, TeamFightTactics });
+const rootReducer = combineReducers({ LeagueOfLegends, TeamFightTactics, Osu });
 
 const store = configureStore({
   reducer: rootReducer,

@@ -7,6 +7,7 @@ import ContentDisplay from "../components/ContentDisplay/ContentDisplay";
 import LOLUserProfile from "../components/LeagueOfLegends/LOLUserProfile";
 import TFTUserProfile from "../components/TeamfightTactics/TFTUserProfile";
 import SearchBar from "../components/SearchBar/SearchBar";
+import OsuUserProfile from "../components/Osu/OsuUserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             index: true,
             element:  <SearchBar searchBarData={osuSearchBarData} />,
           },
+          {
+            path: "user/:osuUsername",
+            element: <OsuUserProfile/>
+          }
         ],
       },
       {

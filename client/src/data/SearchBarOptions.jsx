@@ -1,7 +1,9 @@
 import { thunkGetUser as LOLThunkGetUser } from "../store/LeagueOfLegends";
 import { thunkGetUser as TFTThunkGetUser } from "../store/TeamFightTactics";
+import { thunkSearchUser as OSUThunkSearchUser } from "../store/Osu";
 import LOLSearchImage from "../assets/LOLBackground.png";
 import TFTSearchImage from "../assets/TFTBackground.png";
+import OSUSearchImage from "../assets/OSUBackground.png"
 
 export const lolSearchBarData = {
   searchThunk: LOLThunkGetUser,
@@ -11,10 +13,10 @@ export const lolSearchBarData = {
 };
 
 export const osuSearchBarData = {
-  searchThunk: LOLThunkGetUser,
+  searchThunk: OSUThunkSearchUser,
   redirectURL: "/osu/user",
-  image: LOLSearchImage,
-  placeHolder: "This is osu Search",
+  image: OSUSearchImage,
+  placeHolder: "Circle Clicker Query",
 };
 
 export const tftSearchBarData = {
