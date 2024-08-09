@@ -20,23 +20,26 @@ class LOLClient {
         `${this.baseUrl}/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${this.apiKey}`
       );
 
-      let data = await res.json();
-      if (data.puuid) {
+      if (res.ok) {
+        let data = await res.json();
+
         let player = {
-          summonerInfo: await this.getSumm(data.puuid,gameName,tagLine),
+          summonerInfo: await this.getSumm(data.puuid, gameName, tagLine),
           matches: await this.getMatches(data.puuid),
         };
 
         return player;
       } else {
-        throw new Error("User does not exist");
+        let error = await res.json();
+
+        this.handleError("User", error)
       }
     } catch (e) {
-      console.error(e);
+      console.log(e.message);
     }
   };
 
-  static getSumm = async (puuid,name,tag) => {
+  static getSumm = async (puuid, name, tag) => {
     try {
       let res = await fetch(
         `https://${this.baseRegion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${this.apiKey}`
@@ -45,11 +48,11 @@ class LOLClient {
       let data = await res.json();
 
       return {
-        puuid : data.puuid,
-        summonerLevel : data.summonerLevel,
-        profileIconUrl : await this.getSummonerImageById(data.profileIconId),
-        gameName : name,
-        tagLine : tag
+        puuid: data.puuid,
+        summonerLevel: data.summonerLevel,
+        profileIconUrl: await this.getSummonerImageById(data.profileIconId),
+        gameName: name,
+        tagLine: tag,
       };
     } catch (e) {
       console.error(e);
@@ -86,7 +89,7 @@ class LOLClient {
       match = await this.formatMatch(match);
       return match;
     } catch (e) {
-      console.error(e);
+      console.log(e.message);
     }
   };
 
@@ -138,8 +141,8 @@ class LOLClient {
         item5Url: await this.getItemImageById(current.item5),
         item6Url: await this.getItemImageById(current.item6),
 
-        summoner1Url: (await this.getSpellImageById(current.summoner1Id)),
-        summoner2Url: (await this.getSpellImageById(current.summoner2Id)),
+        summoner1Url: await this.getSpellImageById(current.summoner1Id),
+        summoner2Url: await this.getSpellImageById(current.summoner2Id),
       };
 
       res.push(player);
@@ -210,8 +213,22 @@ class LOLClient {
   static getSummonerImageById = async (iconId) => {
     let version = await this.getVersion();
     return `${this.dataDragonUrl}/cdn/${version}/img/profileicon/${iconId}.png`;
-  }
+  };
 
+  static handleError = async (resource, error) => {
+    try {
+      switch (error.status.status_code) {
+        case 404:
+          throw new Error(`${resource} is not found/exist`);
+        case 403:
+          throw new Error("Riot Api Key is Expired");
+        default:
+          throw new Error(error.status.message);
+      }
+    } catch (e) {
+      console.log(e.message)
+    }
+  };
 }
 
 export default LOLClient;

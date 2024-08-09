@@ -11,7 +11,7 @@ const actionGetUser = (user) => ({
 export const thunkGetUser = (riotID) => async (dispatch) => {
     riotID = encodeURIComponent(riotID);
     const response = await fetch(`/api/tft/getUser/${riotID}`);
-  
+
     if (response.ok) {
       const user = await response.json();
       console.log(user);
@@ -19,7 +19,7 @@ export const thunkGetUser = (riotID) => async (dispatch) => {
       return true;
     } else {
       const error = await response.json();
-  
+
       console.error(error);
     }
   };

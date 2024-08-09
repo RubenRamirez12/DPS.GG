@@ -14,9 +14,9 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/LOL", LOLRoutes)
-app.use("/api/Osu", OSURoutes)
-app.use("/api/TFT", TFTRoutes)
+app.use("/api/lol", LOLRoutes)
+app.use("/api/osu", OSURoutes)
+app.use("/api/tft", TFTRoutes)
 
 const PORT = process.env.PORT || 5050;
 const mongoServer = await MongoMemoryServer.create()

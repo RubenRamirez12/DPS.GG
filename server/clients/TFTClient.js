@@ -18,16 +18,19 @@ class TFTClient {
       let res = await fetch(
         `${this.baseUrl}/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${this.apiKey}`
       );
+
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
+
       let data = await res.json();
+      console.log("SOMETHING", data)
       if (data.puuid) {
         let player = {
           summonerInfo: await this.getSumm(data.puuid, gameName, tagLine),
           matches: await this.getMatches(data.puuid),
         };
-  
+
         return player;
       } else {
         throw new Error("User does not exist");
@@ -109,6 +112,7 @@ class TFTClient {
 
     for (let i = 0; i < players.length; i++) {
       let current = players[i];
+      return current;
 
       let player = {
         riotIDGameName: await this.getOtherName(current.puuid),
