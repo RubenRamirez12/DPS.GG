@@ -12,7 +12,7 @@
 .osu-user-profile__user-info-section {
     display: flex;
     border: 2px lightblue solid;
-    height: 100%;
+    height: fit-content;
     width: 30%;
     align-items: center;
     padding-top: 1%;
