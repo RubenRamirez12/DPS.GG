@@ -19,7 +19,7 @@ export const lolSidebarData = [
     icon: <RiSkull2Fill />,
   },
   {
-    path: "/lol/user/poison422#NA1",
+    path: "/lol/user/poison422-NA1",
     name: "Test User",
     icon: <RiSkull2Fill />
   }

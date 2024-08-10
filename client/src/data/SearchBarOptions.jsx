@@ -1,57 +1,27 @@
-import { useDispatch } from "react-redux"
-import { thunkGetUser as LOLThunkGetUser } from "../store/LeagueOfLegends"
-
-
+import { thunkSearchUser as LOLThunkSearchUser } from "../store/LeagueOfLegends";
+import { thunkGetUser as TFTThunkGetUser } from "../store/TeamFightTactics";
+import { thunkSearchUser as OSUThunkSearchUser } from "../store/Osu";
+import LOLSearchImage from "../assets/LOLBackground.png";
+import TFTSearchImage from "../assets/TFTBackground.png";
+import OSUSearchImage from "../assets/OSUBackground.png"
 
 export const lolSearchBarData = {
-
-
-    handleSearch: async function(e, riotID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(riotID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-
-
-
-    placeHolder: "Search Yourself"
-}
+  searchThunk: LOLThunkSearchUser,
+  redirectURL: "/lol/user",
+  image: LOLSearchImage,
+  placeHolder: "Search Yourself",
+};
 
 export const osuSearchBarData = {
-
-
-    handleSearch: async function(e, osuID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(osuID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-
-
-    placeHolder: "This is osu Search"
-}
-
+  searchThunk: OSUThunkSearchUser,
+  redirectURL: "/osu/user",
+  image: OSUSearchImage,
+  placeHolder: "Circle Clicker Query",
+};
 
 export const tftSearchBarData = {
-    handleSearch: async function(e, riotID) {
-        let dispatch = useDispatch()
-        let navigate = useNavigate()
-        e.preventDefault()
-        let redirect = await dispatch(LOLThunkGetUser(riotID))
-
-        if (redirect) {
-            navigate("/lol/user/riotID")
-        }
-    },
-    placeHolder: "This is not osu Search"
-}
+  searchThunk: TFTThunkGetUser,
+  redirectURL: "/tft/user",
+  image: TFTSearchImage,
+  placeHolder: "This is not osu Search",
+};

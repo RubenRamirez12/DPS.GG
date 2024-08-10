@@ -1,11 +1,26 @@
 import OsuClient from "../clients/OsuClient.js";
 
-export const getUser = async (req, res) => {
-  console.log("HIT OSU GET USER");
-  const { osuID, osuGameMode } = req.body;
+export const searchUser = async (req, res) => {
+  const osuUsername = req.params.osuUsername
 
   try {
-    let user = await OsuClient.getUser(osuID, osuGameMode);
+    let exists = await OsuClient.searchUser(osuUsername)
+
+    if (exists) {
+      res.status(200).json()
+    } else {
+      res.status(404).json()
+    }
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+
+export const getUser = async (req, res) => {
+  const { osuUsername, osuGameMode } = req.params;
+
+  try {
+    let user = await OsuClient.getUser(osuUsername, osuGameMode);
 
     res.status(200).json(user);
   } catch (error) {
@@ -14,7 +29,7 @@ export const getUser = async (req, res) => {
 };
 
 export const getBeatmap = async (req, res) => {
-  const { beatmapID } = req.body;
+  const { beatmapID } = req.params.beatmapID;
 
   try {
     const beatmap = await OsuClient.getBeatmap(beatmapID);
@@ -26,7 +41,7 @@ export const getBeatmap = async (req, res) => {
 };
 
 export const getBeatmapSet = async (req, res) => {
-  const { beatmapSetID } = req.body;
+  const { beatmapSetID } = req.params.beatmapSetID;
 
   try {
     const beatmapSet = await OsuClient.getBeatmapSet(beatmapSetID);
@@ -38,10 +53,10 @@ export const getBeatmapSet = async (req, res) => {
 };
 
 export const getBeatmapScore = async (req, res) => {
-  const { beatmapID, osuID } = req.body;
+  const { beatmapID, osuUsername } = req.params;
 
   try {
-    const userScore = await OsuClient.getBeatmapScore(beatmapID, osuID);
+    const userScore = await OsuClient.getBeatmapScore(beatmapID, osuUsername);
 
     res.status(200).json(userScore);
   } catch (error) {
@@ -50,10 +65,10 @@ export const getBeatmapScore = async (req, res) => {
 };
 
 export const getUserBest = async (req, res) => {
-  const { osuID, osuGameMode } = req.body;
+  const { osuUsername, osuGameMode } = req.params;
 
   try {
-    const userBestScores = await OsuClient.getUserBest(osuID, osuGameMode);
+    const userBestScores = await OsuClient.getUserBest(osuUsername, osuGameMode);
 
     res.status(200).json(userBestScores);
   } catch (error) {

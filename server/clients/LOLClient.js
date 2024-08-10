@@ -11,48 +11,63 @@ class LOLClient {
   static spellData = null;
   static baseRegion = "na1";
 
-  static getUser = async (riotID) => {
+  static searchUser = async (riotID) => {
     try {
-      riotID = decodeURIComponent(riotID);
-      let [gameName, tagLine] = riotID.split("#");
+      let [gameName, tagLine] = riotID.split("-");
 
       let res = await fetch(
         `${this.baseUrl}/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${this.apiKey}`
       );
 
-      let data = await res.json();
-      if (data.puuid) {
-        let player = {
-          summonerInfo: await this.getSumm(data.puuid,gameName,tagLine),
-          matches: await this.getMatches(data.puuid),
-        };
+      let data = await this.validateResponse(res, "User");
 
-        return player;
-      } else {
-        throw new Error("User does not exist");
-      }
-    } catch (e) {
-      console.error(e);
+      return data;
+    } catch (error) {
+      console.error(`Error searching user: ${error.message}`);
+      return false;
     }
   };
 
-  static getSumm = async (puuid,name,tag) => {
+  static getUser = async (riotID) => {
+    try {
+      let [gameName, tagLine] = riotID.split("-");
+
+      let res = await fetch(
+        `${this.baseUrl}/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${this.apiKey}`
+      );
+
+      let data = await this.validateResponse(res, "User");
+
+      let player = {
+        summonerInfo: await this.getSumm(data.puuid, gameName, tagLine),
+        matches: await this.getMatches(data.puuid),
+      };
+
+      return player;
+    } catch (error) {
+      console.error(`Error getting user: ${error.message}`);
+      throw error;
+    }
+  };
+
+  static getSumm = async (puuid, name, tag) => {
     try {
       let res = await fetch(
         `https://${this.baseRegion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${this.apiKey}`
       );
 
-      let data = await res.json();
+      let data = await this.validateResponse(res, "Summoner");
 
       return {
-        puuid : data.puuid,
-        summonerLevel : data.summonerLevel,
-        profileIconUrl : await this.getSummonerImageById(data.profileIconId),
-        gameName : name,
-        tagLine : tag
+        puuid: data.puuid,
+        summonerLevel: data.summonerLevel,
+        profileIconUrl: await this.getSummonerImageById(data.profileIconId),
+        gameName: name,
+        tagLine: tag,
       };
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(`Error getting summoner: ${error.message}`);
+      throw error;
     }
   };
 
@@ -62,7 +77,7 @@ class LOLClient {
         `${this.baseUrl}/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${this.apiKey}`
       );
 
-      let data = await res.json();
+      let data = await this.validateResponse(res, "Matches");
 
       let matches = [];
       for (let i = 0; i < data.length; i++) {
@@ -71,8 +86,9 @@ class LOLClient {
       }
 
       return matches;
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(`Error getting matches: ${error.message}`);
+      throw error;
     }
   };
 
@@ -82,76 +98,93 @@ class LOLClient {
         `${this.baseUrl}/lol/match/v5/matches/${matchID}?api_key=${this.apiKey}`
       );
 
-      let match = await res.json();
+      let match = await this.validateResponse(res, "Match Details");
+
       match = await this.formatMatch(match);
+
       return match;
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(`Error getting match details: ${error.message}`);
+      throw error;
     }
   };
 
   static formatMatch = async (match) => {
-    // a single match object
+    try {
+      let res = {
+        matchDetails: {
+          gameLength: match.info.gameDuration,
+          matchId: match.metadata.matchId,
+          gameMode: match.info.gameMode,
+        },
+        players: await this.formatPlayers(match.info.participants),
+      };
 
-    let res = {
-      matchDetails: {
-        gameLength: match.info.gameDuration,
-        matchId: match.metadata.matchId,
-        gameMode: match.info.gameMode,
-      },
-      players: await this.formatPlayers(match.info.participants),
-    };
-
-    return res;
+      return res;
+    } catch (error) {
+      console.error(`Error formatting players: ${error.message}`);
+      throw error;
+    }
   };
 
   static formatPlayers = async (players) => {
-    let res = [];
+    try {
+      let res = [];
 
-    for (let i = 0; i < players.length; i++) {
-      let current = players[i];
+      for (let i = 0; i < players.length; i++) {
+        let current = players[i];
 
-      let player = {
-        riotIDGameName: current.riotIdGameName,
-        riotIDTagline: current.riotIdTagline,
+        let player = {
+          riotIDGameName: current.riotIdGameName,
+          riotIDTagline: current.riotIdTagline,
 
-        role: current.role,
-        teamId: current.teamId,
-        win: current.win,
+          role: current.role,
+          teamId: current.teamId,
+          win: current.win,
 
-        championName: current.championName,
-        championImage: await this.getChampionImageByName(current.championName),
-        championLevel: current.champLevel,
-        championID: current.champId,
+          championName: current.championName,
+          championImage: await this.getChampionImageByName(
+            current.championName
+          ),
+          championLevel: current.champLevel,
+          championID: current.champId,
 
-        kills: current.kills,
-        deaths: current.deaths,
-        assists: current.assists,
-        visionScore: current.visionScore,
-        creepScore: current.totalMinionsKilled,
+          kills: current.kills,
+          deaths: current.deaths,
+          assists: current.assists,
+          visionScore: current.visionScore,
+          creepScore: current.totalMinionsKilled,
 
-        item0Url: await this.getItemImageById(current.item0),
-        item1Url: await this.getItemImageById(current.item1),
-        item2Url: await this.getItemImageById(current.item2),
-        item3Url: await this.getItemImageById(current.item3),
-        item4Url: await this.getItemImageById(current.item4),
-        item5Url: await this.getItemImageById(current.item5),
-        item6Url: await this.getItemImageById(current.item6),
+          item0Url: await this.getItemImageById(current.item0),
+          item1Url: await this.getItemImageById(current.item1),
+          item2Url: await this.getItemImageById(current.item2),
+          item3Url: await this.getItemImageById(current.item3),
+          item4Url: await this.getItemImageById(current.item4),
+          item5Url: await this.getItemImageById(current.item5),
+          item6Url: await this.getItemImageById(current.item6),
 
-        summoner1Url: (await this.getSpellImageById(current.summoner1Id)),
-        summoner2Url: (await this.getSpellImageById(current.summoner2Id)),
-      };
+          summoner1Url: await this.getSpellImageById(current.summoner1Id),
+          summoner2Url: await this.getSpellImageById(current.summoner2Id),
+        };
 
-      res.push(player);
+        res.push(player);
+      }
+      return res;
+    } catch (error) {
+      console.error(`Error formatting single player: ${error.message}`);
+      throw error;
     }
-    return res;
   };
 
   static getVersion = async () => {
     if (this.version === null) {
-      let res = await fetch(`${this.dataDragonUrl}/api/versions.json`);
-      let versions = await res.json();
-      this.version = versions[0];
+      try {
+        let res = await fetch(`${this.dataDragonUrl}/api/versions.json`);
+        this.version = (await res.json())[0];
+      } catch (error) {
+        console.error("Error fetching version data: ", error.message);
+        throw error;
+      }
     }
     return this.version;
   };
@@ -210,8 +243,23 @@ class LOLClient {
   static getSummonerImageById = async (iconId) => {
     let version = await this.getVersion();
     return `${this.dataDragonUrl}/cdn/${version}/img/profileicon/${iconId}.png`;
-  }
+  };
 
+  static validateResponse = (res, errorMessage = "") => {
+    if (!res.ok) {
+      switch (res.status) {
+        case 403:
+          throw new Error("RIOT API key is expired/invalid");
+        case 404:
+          throw new Error(`${errorMessage} not found`);
+        default:
+          throw new Error(
+            `API request failed with status ${res.status}: ${res.statusText}`
+          );
+      }
+    }
+    return res.json();
+  };
 }
 
 export default LOLClient;
