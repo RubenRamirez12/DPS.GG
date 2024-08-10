@@ -2,22 +2,35 @@ import { useDispatch, useSelector } from "react-redux";
 import "./LOLUserProfile.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { thunkGetUser } from "../../store/LeagueOfLegends";
+import { actionClearUser, thunkGetUser } from "../../store/LeagueOfLegends";
 
 export default function LOLUserProfile() {
   let dispatch = useDispatch();
   let { riotID } = useParams();
   let user = useSelector((state) => state.LeagueOfLegends.currentUser);
-  console.log(user, riotID)
+  let loading = useSelector((state) => state.LeagueOfLegends.loading);
+  let error = useSelector((state) => state.LeagueOfLegends.error);
 
   useEffect(() => {
     dispatch(thunkGetUser(riotID));
+
+    return () => {
+      dispatch(actionClearUser());
+    };
   }, [dispatch]);
 
-  if (!user) {
+  if (loading) {
     return (
       <div className="lol-profile__div">
         <h1>loading!!!!!!!!!!!!!!!!!!!!!</h1>
+      </div>
+    );
+  }
+
+  if (!loading && error) {
+    return (
+      <div>
+        <h1>404 user is not found</h1>
       </div>
     );
   }

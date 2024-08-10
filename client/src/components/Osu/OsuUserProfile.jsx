@@ -11,10 +11,12 @@ export default function OsuUserProfile() {
   let loading = useSelector((state) => state.Osu.loading);
   let error = useSelector(state => state.Osu.error)
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(thunkGetUser(osuUsername))
+
+    return () => {
+      dispatch(actionClearUser())
+    }
   }, [dispatch]);
 
   if (loading) {
@@ -24,7 +26,7 @@ export default function OsuUserProfile() {
       </div>
     );
   }
-  console.log("HELLO", loading, error, !loading && error)
+
   if (!loading && error) {
     return (
       <div>
