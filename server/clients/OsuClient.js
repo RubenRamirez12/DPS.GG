@@ -60,6 +60,11 @@ class OsuClient {
       }
     } catch (e) {
       console.log(e.message);
+      //handleError throws an error and gets sent to the catch make sure you throw error again
+      //similar to lol client, without the throw we are recieving a
+      //res.ok in the frontend because it doesnt tell the controller thats recieving
+      //this that something is wrong
+      throw e
     }
   };
 

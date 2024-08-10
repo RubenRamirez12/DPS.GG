@@ -1,24 +1,34 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./OsuUserProfile.css";
 import { useEffect } from "react";
-import { thunkGetUser } from "../../store/Osu";
+import { actionClearUser, thunkGetUser } from "../../store/Osu";
 import { useParams } from "react-router-dom";
 
 export default function OsuUserProfile() {
   const dispatch = useDispatch();
   const { osuUsername } = useParams();
   let user = useSelector((state) => state.Osu.currentUser);
+  let loading = useSelector((state) => state.Osu.loading);
+  let error = useSelector(state => state.Osu.error)
 
   console.log(user);
 
   useEffect(() => {
-    let currentUser = dispatch(thunkGetUser(osuUsername));
+    dispatch(thunkGetUser(osuUsername))
   }, [dispatch]);
 
-  if (!user) {
+  if (loading) {
     return (
       <div className="osu-user-profile__div">
         <h1>OSU LOADING</h1>
+      </div>
+    );
+  }
+  console.log("HELLO", loading, error, !loading && error)
+  if (!loading && error) {
+    return (
+      <div>
+        <h1>404 user is not found</h1>
       </div>
     );
   }
