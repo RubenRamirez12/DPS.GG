@@ -1,4 +1,4 @@
-import { thunkGetUser as LOLThunkGetUser } from "../store/LeagueOfLegends";
+import { thunkSearchUser as LOLThunkSearchUser } from "../store/LeagueOfLegends";
 import { thunkGetUser as TFTThunkGetUser } from "../store/TeamFightTactics";
 import { thunkSearchUser as OSUThunkSearchUser } from "../store/Osu";
 import LOLSearchImage from "../assets/LOLBackground.png";
@@ -6,7 +6,7 @@ import TFTSearchImage from "../assets/TFTBackground.png";
 import OSUSearchImage from "../assets/OSUBackground.png"
 
 export const lolSearchBarData = {
-  searchThunk: LOLThunkGetUser,
+  searchThunk: LOLThunkSearchUser,
   redirectURL: "/lol/user",
   image: LOLSearchImage,
   placeHolder: "Search Yourself",

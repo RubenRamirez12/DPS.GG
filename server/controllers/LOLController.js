@@ -1,13 +1,29 @@
-import LOLClient from "../clients/LOLClient.js"
+import LOLClient from "../clients/LOLClient.js";
+
+export const searchUser = async (req, res) => {
+  try {
+    let { riotID } = req.params;
+
+    let exists = await LOLClient.searchUser(riotID);
+
+    if (exists) {
+      res.status(200).json();
+    } else {
+      res.status(404).json();
+    }
+  } catch (e) {
+    res.status(404).json(e.message);
+  }
+};
 
 export const getUser = async (req, res) => {
-    const riotID = req.params.riotID
+  try {
+    const { riotID } = req.params;
 
-    try {
-        let user = await LOLClient.getUser(riotID)
+    let user = await LOLClient.getUser(riotID);
 
-        res.status(200).json(user)
-    } catch (error) {
-        res.status(404).json({ message: error.message })
-    }
-}
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

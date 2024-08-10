@@ -8,14 +8,18 @@
 .content-display__sidebar{
     display: flex;
     flex-direction: column;
-    position: relative;
+    position: fixed;
     height: 100%;
+    width: 75px;
+    top: 40;
+    left: 0;
 }
 
 .content-display__main{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 100%;
-    margin-left: 50px;
+    height: 100vh;
+    margin-left: 75px;
+    overflow: auto
 }

@@ -17,10 +17,10 @@ export default function SearchBar({ searchBarData }) {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    let redirect = await dispatch(searchBarData.searchThunk(searchVal));
+    let res = await dispatch(searchBarData.searchThunk(searchVal));
 
-    if (redirect) {
-      navigate(`${searchBarData.redirectURL}/${searchVal}`);
+    if (res.ok) {
+      navigate(res.redirect);
     }
   };
 

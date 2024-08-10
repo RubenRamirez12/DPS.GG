@@ -1,3 +1,6 @@
+import { redirect } from "react-router-dom";
+import { encodeRiotID } from "../utility/helperFunctions";
+
 //types
 const GET_USER = "lol/getUser";
 
@@ -8,23 +11,28 @@ const actionGetUser = (user) => ({
 });
 
 //thunk
-export const thunkGetUser = (riotID) => async (dispatch) => {
-  riotID = encodeURIComponent(riotID);
-  const response = await fetch(`/api/lol/getUser/${riotID}`);
+export const thunkSearchUser = (riotID) => async (dispatch) => {
+  const res = await fetch(`/api/lol/searchUser/${encodeRiotID(riotID)}`);
 
-  if (response.ok) {
-    const user = await response.json();
-    console.log(user);
-    dispatch(actionGetUser(user));
-    return true;
+  if (res.ok) {
+    return { ok: true, redirect: `/lol/user/${encodeRiotID(riotID)}` };
   } else {
-    const error = await response.json();
-
-    console.error(error);
+    return { ok: false, redirect: `/lol` };
   }
 };
 
-export default function reducer(state = { currentUser: {} }, action) {
+export const thunkGetUser = (riotID) => async (dispatch) => {
+  const res = await fetch(`/api/lol/getUser/${encodeRiotID(riotID)}`);
+
+  if (res.ok) {
+    const user = await response.json();
+    dispatch(actionGetUser(user));
+  }
+
+  return true;
+};
+
+export default function reducer(state = { currentUser: null }, action) {
   switch (action.type) {
     case GET_USER:
       return { ...state, currentUser: action.payload };
