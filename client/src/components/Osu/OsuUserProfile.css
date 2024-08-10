@@ -4,7 +4,7 @@
     justify-content: center;
     border: 2px white solid;
     gap: 3%;
-    overflow: auto;
+    overflow-y: scroll;
     padding-bottom: 5%;
 }
 
