@@ -3,36 +3,83 @@
     flex-direction: row;
     justify-content: center;
     border: 2px white solid;
-    gap: 5%;
-    height: 100%;
+    gap: 3%;
     overflow: auto;
     padding-bottom: 5%;
 }
 
 .osu-user-profile__user-info-section {
     display: flex;
-    height: fit-content;
     width: 30%;
     align-items: center;
-    padding-top: 1%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     flex-direction: column;
     background-color: rgb(29, 29, 29);
+    gap: 5%;
 }
 
-.user-info__joindate {
+.osu-user-profile__user-info-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.user-info__img {
+.osu-user-profile__user-info__username {
+    font-size: 60px;
+    font-weight: bolder
+}
+
+.osu-user-profile__section-header {
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.osu-user-profile__section-info {
+    font-size: 30px;
+    font-weight:normal
+}
+
+.osu-user-profile__user-info__joindate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+.osu-user-profile__user-info__pfp {
     width: 80%;
     border-radius: 50%;
 }
 
+.osu-user-profile__user-info__ranks {
+    display: flex;
+    gap: 50px;
+    text-align: center;
+}
+
+.osu-user-profile__user-info__ranks__global {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.osu-user-profile__user-info__ranks__country {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.osu-user-profile__user-info__time-played {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
 .osu-user-profile__user-plays {
     display: flex;
-    border: 2px greenyellow solid;
-    width: 60%;
+    background-color: rgb(29, 29, 29);
+    width: 65%;
     /* height: fit-content; */
 }
