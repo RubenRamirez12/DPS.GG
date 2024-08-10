@@ -32,7 +32,7 @@ const actionGetUserBest = (userBest) => ({
 export const thunkSearchUser = (osuUsername) => async (dispatch) => {
   const res = await fetch(`api/osu/searchUser/${osuUsername}`);
   if (res.ok) {
-    return { ok: true, redirect: `/osu/user/${osuUsername}}` };
+    return { ok: true, redirect: `/osu/user/${osuUsername}` };
   } else {
     return { ok: false, redirect: `/osu` };
   }
