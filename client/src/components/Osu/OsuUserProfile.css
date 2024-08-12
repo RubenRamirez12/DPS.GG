@@ -4,14 +4,9 @@
     justify-content: space-between;
     padding-left: 2%;
     padding-right: 2%;
+    padding-bottom: 2%;
 
     height: fit-content;
-
-
-
-    /* delete this padding 50% was using as testing to make */
-    /* Sure that scrolling is working as intended. */
-    padding-bottom: 50%;
 }
 
 .osu-user-profile__user-info-section {

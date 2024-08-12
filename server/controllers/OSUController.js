@@ -12,7 +12,7 @@ export const searchUser = async (req, res) => {
       res.status(404).json()
     }
   } catch (error) {
-    res.status(400).json({message: error.message})
+    res.status(404).json({message: error.message})
   }
 }
 
@@ -56,7 +56,7 @@ export const getBeatmapScore = async (req, res) => {
   const { beatmapID, osuUsername } = req.params;
 
   try {
-    const userScore = await OsuClient.getBeatmapScore(beatmapID, osuUsername);
+    const userScore = await OsuClient.getBeatmapScores(beatmapID, osuUsername);
 
     res.status(200).json(userScore);
   } catch (error) {

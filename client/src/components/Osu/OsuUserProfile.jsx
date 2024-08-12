@@ -39,6 +39,7 @@ export default function OsuUserProfile() {
     );
   }
 
+  console.log(user)
   return (
     <div className="osu-user-profile__div">
       <div className="osu-user-profile__user-info-section">
@@ -56,7 +57,7 @@ export default function OsuUserProfile() {
             Account Created
           </span>
           <span className="osu-user-profile__section-info">
-            {osuJoinDateDisplay(user.join_date)}
+            {osuJoinDateDisplay(user.joinDate)}
           </span>
         </div>
         <div className="osu-user-profile__user-info__ranks">
@@ -65,7 +66,7 @@ export default function OsuUserProfile() {
               GLOBAL RANK
             </span>
             <span className="osu-user-profile__section-info">
-              {Number(user.pp_rank).toLocaleString()}
+              {Number(user.ppRank).toLocaleString()}
             </span>
           </div>
           <div className="osu-user-profile__user-info__ranks__country">
@@ -73,14 +74,14 @@ export default function OsuUserProfile() {
               {user.country} RANK
             </span>
             <span className="osu-user-profile__section-info">
-              {Number(user.pp_country_rank).toLocaleString()}
+              {Number(user.ppCountryRank).toLocaleString()}
             </span>
           </div>
         </div>
         <div className="osu-user-profile__user-info__time-played">
           <span className="osu-user-profile__section-header">TIME PLAYED</span>
           <span className="osu-user-profile__section-info">
-            {osuPlayTimeDisplay(user.total_seconds_played)}
+            {osuPlayTimeDisplay(user.totalSecondsPlayed)}
           </span>
         </div>
         <div className="osu-user-profile__user-info__level">
