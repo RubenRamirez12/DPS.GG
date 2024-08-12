@@ -67,7 +67,10 @@ export default function LOLUserProfile() {
             <div className="lol-user-proflie__ranked-solo">Ranked Solo</div>
             <div className="lol-user-proflie__ranked-flex">Ranked flex</div>
           </div>
-          <div className="lol-user-profile__match-history">2</div>
+          <div className="lol-user-profile__match-history-container">
+            <div className="lol-user-profile__match-history-title">1</div>
+            <div className="lol-user-profile__match-history-list">2</div>
+          </div>
         </div>
       </div>
     </div>
