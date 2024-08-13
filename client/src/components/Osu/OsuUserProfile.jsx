@@ -7,6 +7,11 @@ import {
   osuJoinDateDisplay,
   osuPlayTimeDisplay,
 } from "../../utility/helperFunctions";
+import SSH from "../../assets/osuSSHRank.png"
+import SS from "../../assets/osuSSRank.png"
+import SH from "../../assets/osuSHRank.png"
+import S from "../../assets/osuSRank.png"
+import A from "../../assets/osuARank.png"
 
 export default function OsuUserProfile() {
   const dispatch = useDispatch();
@@ -95,7 +100,31 @@ export default function OsuUserProfile() {
 
       <div className="osu-user-profile__user-plays">
         <div className="osu-user-profile__user-plays__more-user-info">
-
+          <div className="osu-user-profile__user-plays__more-user-info__grade-display">
+          <div className="osu-user-profile__user-plays__more-user-info__grades">
+            <img src={SSH} className="osu-user-profile__user-plays__grade-icon"/>
+            <span className="osu-user-profile__user-plays__grade">{user.countRankSSH}</span>
+          </div>
+          <div className="osu-user-profile__user-plays__more-user-info__grades">
+            <img src={SS} className="osu-user-profile__user-plays__grade-icon"/>
+            <span className="osu-user-profile__user-plays__grade">{user.countRankSS}</span>
+          </div>
+          <div className="osu-user-profile__user-plays__more-user-info__grades">
+            <img src={SH} className="osu-user-profile__user-plays__grade-icon"/>
+            <span className="osu-user-profile__user-plays__grade">{user.countRankSH}</span>
+          </div>
+          <div className="osu-user-profile__user-plays__more-user-info__grades">
+            <img src={S} className="osu-user-profile__user-plays__grade-icon"/>
+            <span className="osu-user-profile__user-plays__grade">{user.countRankS}</span>
+          </div>
+          <div className="osu-user-profile__user-plays__more-user-info__grades">
+            <img src={A} className="osu-user-profile__user-plays__grade-icon"/>
+            <span className="osu-user-profile__user-plays__grade">{user.countRankA}</span>
+          </div>
+          </div>
+          <span className="osu-user-profile__user-plays__more-user-info__playcount">
+            Total Playcount: {user.playcount}
+          </span>
         </div>
         <div className="osu-user-profile__user-plays__recent">
           <button onClick={() => {
