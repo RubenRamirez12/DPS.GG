@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./OsuUserProfile.css";
 import { useEffect } from "react";
-import { actionClearUser, thunkGetUser } from "../../store/Osu";
+import { actionClearUser, thunkGetUser, thunkGetUserRecent } from "../../store/Osu";
 import { useParams } from "react-router-dom";
 import {
   osuJoinDateDisplay,
@@ -12,6 +12,7 @@ export default function OsuUserProfile() {
   const dispatch = useDispatch();
   const { osuUsername } = useParams();
   let user = useSelector((state) => state.Osu.currentUser);
+  let scores = useSelector((state) => state.Osu.scores);
   let loading = useSelector((state) => state.Osu.loading);
   let error = useSelector((state) => state.Osu.error);
 
@@ -38,8 +39,9 @@ export default function OsuUserProfile() {
       </div>
     );
   }
-
   console.log(user)
+  console.log(osuUsername)
+  console.log(scores)
   return (
     <div className="osu-user-profile__div">
       <div className="osu-user-profile__user-info-section">
@@ -92,7 +94,14 @@ export default function OsuUserProfile() {
       </div>
 
       <div className="osu-user-profile__user-plays">
-        <div className="osu-user-profile__user-plays__recent"></div>
+        <div className="osu-user-profile__user-plays__more-user-info">
+
+        </div>
+        <div className="osu-user-profile__user-plays__recent">
+          <button onClick={() => {
+            dispatch(thunkGetUserRecent(osuUsername))
+          }}>USER RECENT TEST</button>
+        </div>
         <div className="osu-user-profile__user-plays__best"></div>
       </div>
     </div>

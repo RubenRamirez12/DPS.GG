@@ -20,31 +20,36 @@ class OsuClient {
   };
 
   static formatScores = (beatmapScoreArray) => {
-    for (score in beatmapScoreArray) {
-      score = {
-        beatmapID: beatmapScoreArray?.beatmap_id || "N/A",
-        scoreID: beatmapScoreArray?.score_id || "N/A",
-        score: beatmapScoreArray?.score || "N/A",
-        maxCombo: beatmapScoreArray?.maxCombo || "N/A",
-        count50: beatmapScoreArray?.count50 || "N/A",
-        count100: beatmapScoreArray?.count100 || "N/A",
-        count200: beatmapScoreArray?.count200 || "N/A",
-        count300: beatmapScoreArray?.count300 || "N/A",
-        countMiss: beatmapScoreArray?.countmiss || "N/A",
-        countKatu: beatmapScoreArray?.countkatu || "N/A",
-        countGeki: beatmapScoreArray?.countgeki || "N/A",
-        perfect: beatmapScoreArray?.perfect || "N/A",
-        enabledMods: beatmapScoreArray?.enabled_mods || "N/A",
-        userID: beatmapScoreArray?.user_id || "N/A",
-        dateAchieved: beatmapScoreArray?.date || "N/A",
-        pp: beatmapScoreArray?.pp || "N/A",
+    let newScoreArray = []
+    for (let i = 0; i < beatmapScoreArray.length; i++) {
+      let score = beatmapScoreArray[i]
+      let temp = {
+        beatmapID: score?.beatmap_id || "N/A",
+        scoreID: score?.score_id || "N/A",
+        score: score?.score || "N/A",
+        maxCombo: score?.maxcombo || "N/A",
+        count50: score?.count50 || "N/A",
+        count100: score?.count100 || "N/A",
+        count200: score?.count200 || "N/A",
+        count300: score?.count300 || "N/A",
+        countMiss: score?.countmiss || "N/A",
+        perfect: score?.perfect || "N/A",
+        enabledMods: score?.enabled_mods || "N/A",
+        userID: score?.user_id || "N/A",
+        dateAchieved: score?.date || "N/A",
+        pp: score?.pp || "N/A",
+        rank: score?.rank || "N/A",
       };
+      newScoreArray.push(temp)
     }
+    return newScoreArray
   };
 
   static formatBeatmaps = (beatmapArray) => {
-    for (beatmap in beatmapArray) {
-      beatmap = {
+    let newBeatmapArray = []
+    for (let i = 0; beatmapArray.length; i++) {
+      let beatmap = beatmapArray[i]
+      temp = {
         approved: beatmap?.approved || "N/A",
         songArtist: beatmap?.artist || "N/A",
         songTitle: beatmap?.title || "N/A",
@@ -64,8 +69,9 @@ class OsuClient {
         gameMode: this.gameModeCheck(beatmap?.mode) || "N/A",
         maxPossibleCombo: beatmap?.max_combo || "N/A",
       };
+      newBeatmapArray.push(temp)
     }
-    return beatmapArray;
+    return newBeatmapArray;
   };
 
   static formatGenre = (genreID) => {
@@ -221,7 +227,7 @@ class OsuClient {
   static getBeatmapScores = async (beatmapID, username) => {
     try {
       const response = await fetch(
-        `${this.baseURL}/get_scores?k=${this.apiKey}&b=${beatmapID}u=${username}&limit=10`
+        `${this.baseURL}/get_scores?k=${this.apiKey}&b=${beatmapID}&u=${username}&limit=10`
       );
 
       const data = await this.validateResponse(response, "Score");
@@ -231,6 +237,23 @@ class OsuClient {
       return beatmapScores;
     } catch (error) {
       console.error(`Error getting beatmap scores: ${error.message}`);
+      throw error;
+    }
+  };
+
+  static getUserRecent = async (username) => {
+    try {
+      const response = await fetch(
+        `${this.baseURL}/get_user_recent?k=${this.apiKey}&u=${username}`
+      );
+
+      const data = await this.validateResponse(response, "User Recent");
+
+      const userRecent = this.formatScores(data);
+
+      return userRecent;
+    } catch (error) {
+      console.error(`Error getting recent user scores: ${error.message}`);
       throw error;
     }
   };
