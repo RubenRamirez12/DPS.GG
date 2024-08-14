@@ -7,6 +7,7 @@ import {
   osuJoinDateDisplay,
   osuPlayTimeDisplay,
 } from "../../utility/helperFunctions";
+import RecentBeatmap from "./RecentBeatmap";
 import SSH from "../../assets/osuSSHRank.png"
 import SS from "../../assets/osuSSRank.png"
 import SH from "../../assets/osuSHRank.png"
@@ -23,6 +24,7 @@ export default function OsuUserProfile() {
 
   useEffect(() => {
     dispatch(thunkGetUser(osuUsername));
+    // dispatch(thunkGetUserRecent(osuUsername))
 
     return () => {
       dispatch(actionClearUser());
@@ -46,7 +48,7 @@ export default function OsuUserProfile() {
   }
   console.log(user)
   console.log(osuUsername)
-  console.log(scores)
+  let recent = scores.recent
   return (
     <div className="osu-user-profile__div">
       <div className="osu-user-profile__user-info-section">
@@ -127,9 +129,7 @@ export default function OsuUserProfile() {
           </span>
         </div>
         <div className="osu-user-profile__user-plays__recent">
-          <button onClick={() => {
-            dispatch(thunkGetUserRecent(osuUsername))
-          }}>USER RECENT TEST</button>
+          <RecentBeatmap beatmap={recent}/>
         </div>
         <div className="osu-user-profile__user-plays__best"></div>
       </div>
