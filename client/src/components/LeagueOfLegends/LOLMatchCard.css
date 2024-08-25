@@ -1,0 +1,363 @@
+.lol-match-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2px red solid;
+  height: 100px;
+  width: 100%;
+}
+
+.lol-match-card__game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 15%;
+  border: yellow solid 2px;
+}
+
+.lol-match-card__game-mode {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 30%;
+}
+
+.lol-match-card__date {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 30%;
+}
+
+.lol-match-card__W-L-time {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 30%;
+}
+
+.lol-match-card__champion-loadout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 20%;
+  border: orange solid 2px;
+}
+
+.lol-match-card__champion-icon {
+  position: relative; /* Needed for absolutely positioned child elements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px; /* Fixed height for the container */
+  width: 50px; /* Fixed width for the container */
+}
+
+.lol-match-card__champion-icon-settings {
+  height: 100%; /* Takes up the full height of the parent */
+  width: 100%; /* Takes up the full width of the parent */
+  object-fit: cover; /* Ensures the image covers the area properly */
+}
+
+.lol-match-card__champion-level {
+  position: absolute;
+  bottom: 2px; /* Adjust position from the bottom */
+  left: 2px; /* Adjust position from the left */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: white;
+  padding: 2px 4px; /* Padding around the text */
+  border-radius: 3px;
+  font-size: 12px; /* Font size for the text */
+  font-weight: bold;
+  text-align: center;
+  width: 10px; /* Width of the level badge */
+}
+
+.lol-match-card__spell-rune {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 40%;
+  border: navajowhite 2px solid;
+}
+
+.lol-match-card__spell-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.lol-match-card__spell-2-settings {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
+
+.lol-match-card__spell-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.lol-match-card__spell-2-settings {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
+
+.lol-match-card__rune-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.lol-match-card__rune-1-settings {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
+
+.lol-match-card__rune-2-settings {
+  display: flex;
+  height: 25px;
+  width: 25px;
+}
+
+.lol-match-card__rune-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.lol-match-card__column-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 15%;
+  border: red solid 2px;
+}
+
+.lol-match-card__kda {
+  display: flex;
+  flex-direction: row;
+}
+
+.lol-match-card__kills {
+  display: flex;
+  font-size: medium;
+}
+
+.lol-match-card__kda-slash-one {
+  display: flex;
+  border: 3px solid transparent;
+  color: rgb(170, 170, 170);
+}
+
+.lol-match-card__deaths {
+  display: flex;
+  color: rgb(250, 51, 51);
+  font-size: medium;
+}
+
+.lol-match-card__kda-slash-two {
+  display: flex;
+  border: 3px solid transparent;
+  color: rgb(170, 170, 170);
+}
+
+.lol-match-card__assists {
+  display: flex;
+  font-size: medium;
+}
+
+.lol-match-card__column-two {
+  display: flex;
+  flex-direction: row;
+}
+
+.lol-match-card__kda {
+  display: flex;
+  font-size: small;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.lol-match-card__kda-text {
+  display: flex;
+  color: rgb(170, 170, 170);
+  font-size: small;
+  border: 3px solid transparent;
+}
+
+.lol-match-card__column-three {
+  display: flex;
+  color: rgb(170, 170, 170);
+  font-size: small;
+}
+
+.lol-match-card__column-four {
+  display: flex;
+  color: rgb(170, 170, 170);
+  font-size: small;
+}
+
+.lol-match-card__match-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  width: 20%;
+  border: greenyellow solid 2px;
+}
+
+.lol-match-card__item-1 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-2 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-3 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-4 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-5 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-6 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-7 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__item-8 {
+  display: flex;
+  height: 25px;
+  width: 25px;
+  border: solid 1px transparent;
+}
+
+.lol-match-card__other-users {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  width: 30%;
+  border: wheat 2px solid;
+}
+
+.lol-match-card__player-0 {
+  display: flex;
+}
+
+.lol-match-card__player-0-img{
+  display: flex;
+  height: 20px;
+  width: 20px;
+}
+
+.lol-match-card__player-1 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-2 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-3 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-4 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-5 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-6 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-7 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-8 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}
+
+.lol-match-card__player-9 {
+  display: flex;
+  height: 15px;
+  width: 15px;
+}

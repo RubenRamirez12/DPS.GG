@@ -13,8 +13,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  border: red 2px solid;
+  width: 900px;
 }
 
 .lol-user-profile__top {
@@ -54,7 +53,6 @@
   justify-content: center;
   height: 100%;
   width: 25%;
-  border: green 2px solid;
 }
 
 .lol-user-profile__user-level {
@@ -144,8 +142,8 @@
 .lol-user-profile__match-history-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   height: 100%;
   width: 70%;
   border: burlywood 4px solid;
@@ -153,8 +151,33 @@
 
 .lol-user-profile__match-history-title {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 75px;
+  border: grey 2px solid;
 }
+
+.lol-user-profile__match-history-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 .lol-user-profile__match-history-list {
   display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: flex-start;
+  width: 100%;
+  border: pink 3px solid ;
+  padding: 0;
+}
+
+.lol-user-profile__list-element {
+  display: flex;
+  width: 100%;
 }

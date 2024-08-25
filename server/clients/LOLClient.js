@@ -137,6 +137,7 @@ class LOLClient {
         let player = {
           riotIDGameName: current.riotIdGameName,
           riotIDTagline: current.riotIdTagline,
+          riotPUUID: current.puuid,
 
           role: current.role,
           teamId: current.teamId,
@@ -144,7 +145,7 @@ class LOLClient {
 
           championName: current.championName,
           championImage: await this.getChampionImageByName(
-            current.championName
+          current.championName
           ),
           championLevel: current.champLevel,
           championID: current.champId,
