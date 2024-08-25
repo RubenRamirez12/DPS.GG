@@ -40,3 +40,31 @@ export const osuJoinDateDisplay = (date) => {
   const finalDate = osuDateFormat(tempDate);
   return `${finalDate} at ${timeStamp}`;
 };
+
+export const riotMatchTime = (seconds) => {
+  const riotMinutes = Math.floor((seconds % (60 * 60)) / 60)
+  const riotSeconds = seconds % 60
+
+
+  return `${riotMinutes}:${riotSeconds}`
+}
+
+export const LOLriotKDA = (kills, deaths, assists) => {
+  if (deaths === 0) {
+    return 'Perfect';
+  }
+
+  const riotKDA = (kills + assists) / deaths;
+  return riotKDA.toFixed(2);
+}
+
+// export const LOLriotCS = (creepScore, seconds2) => {
+//   if (seconds2 === 0) {
+//     return 'N/A'; 
+//   }
+
+//   const CSRiotminutes = seconds2 / 60;
+//   const csPerMinute = creepScore / CSRiotminutes;
+  
+//   return `( ${csPerMinute.toFixed(2)})`;
+// }

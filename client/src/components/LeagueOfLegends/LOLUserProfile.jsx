@@ -3,6 +3,7 @@ import "./LOLUserProfile.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { actionClearUser, thunkGetUser } from "../../store/LeagueOfLegends";
+import LOLMatchCard from "./LOLMatchCard";
 
 export default function LOLUserProfile() {
   let dispatch = useDispatch();
@@ -11,29 +12,30 @@ export default function LOLUserProfile() {
   let loading = useSelector((state) => state.LeagueOfLegends.loading);
   let error = useSelector((state) => state.LeagueOfLegends.error);
 
-  useEffect(() => {
-    dispatch(thunkGetUser(riotID));
+    console.log(user);
+    useEffect(() => {
+      dispatch(thunkGetUser(riotID));
 
-    return () => {
-      dispatch(actionClearUser());
-    };
-  }, [dispatch]);
+      return () => {
+        dispatch(actionClearUser());
+      };
+    }, [dispatch]);
 
-  if (loading) {
-    return (
-      <div className="lol-profile__div">
-        <h1>loading!!!!!!!!!!!!!!!!!!!!!</h1>
-      </div>
-    );
-  }
+    if (loading) {
+      return (
+        <div className="lol-profile__div">
+          <h1>loading!!!!!!!!!!!!!!!!!!!!!</h1>
+        </div>
+      );
+    }
 
-  if (!loading && error) {
-    return (
-      <div>
-        <h1>404 user is not found</h1>
-      </div>
-    );
-  }
+    if (!loading && error) {
+      return (
+        <div>
+          <h1>404 user is not found</h1>
+        </div>
+      );
+    }
 
   return (
     <div className="lol-user-profile__div">
@@ -67,7 +69,22 @@ export default function LOLUserProfile() {
             <div className="lol-user-proflie__ranked-solo">Ranked Solo</div>
             <div className="lol-user-proflie__ranked-flex">Ranked flex</div>
           </div>
-          <div className="lol-user-profile__match-history">2</div>
+          <div className="lol-user-profile__match-history-container">
+            <div className="lol-user-profile__match-history-title">
+              Match history
+            </div>
+            <div className="lol-user-profile__match-history-div">
+              <ul className="lol-user-profile__match-history-list">
+                {user.matches.map((match, index) => {
+                  return (
+                    <li key={index} className="lol-user-profile__list-element">
+                      <LOLMatchCard match={match} user={user.summonerInfo} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
