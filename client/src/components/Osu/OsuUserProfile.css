@@ -4,14 +4,9 @@
     justify-content: space-between;
     padding-left: 2%;
     padding-right: 2%;
+    padding-bottom: 2%;
 
     height: fit-content;
-
-
-
-    /* delete this padding 50% was using as testing to make */
-    /* Sure that scrolling is working as intended. */
-    padding-bottom: 50%;
 }
 
 .osu-user-profile__user-info-section {
@@ -87,8 +82,42 @@
 
     gap: 10px;
 }
+
 .osu-user-profile__user-plays {
     display: flex;
     background-color: rgb(29, 29, 29);
     width: 65%;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.osu-user-profile__user-plays__more-user-info__grade-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 200px;
+    gap: 4.8%;
+}
+
+.osu-user-profile__user-plays__more-user-info__grades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.osu-user-profile__user-plays__grade-icon {
+    height: 90%;
+}
+
+.osu-user-profile__user-plays__grade {
+    font-weight: 900;
+    font-size: 50px;
+    margin-top: -40%;
+}
+
+.osu-user-profile__user-plays__more-user-info__playcount {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
 }
