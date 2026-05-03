@@ -57,7 +57,7 @@ export default function SearchBar() {
       setLoading(false)
     }
   }
-
+  //fixed the nuclear problem this comment is just to commit as checkpoint we made it through the storm
   return (
     <div className="relative mx-auto w-full max-w-xl">
       <input

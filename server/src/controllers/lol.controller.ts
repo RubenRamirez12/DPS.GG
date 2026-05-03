@@ -16,7 +16,7 @@ export const search = async (
     next(error);
   }
 };
-
+//fixed the nuclear problem this comment is just to commit as checkpoint we made it through the storm
 export const getUser = async (
   req: Request,
   res: Response,
